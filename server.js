@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 8081;
 var express = require('express');
 var app = express();
 
@@ -19,6 +20,10 @@ var data = {
 app.get('/message', function(req, res) {
 	res.render('pages/message', data);
 });
-app.listen(8081);
+app.get('*', function(req, res) {
+	res.send('Cant find the requested page', 404);
+});
 
-console.log('8081 is the magic port');
+app.listen(PORT, function() {
+	console.log('Example app listening on port 8081!');
+});
